@@ -91,6 +91,18 @@ app.get('/search', auth.isUserLoggedIn, async(req,res)=>{
     }
 });
 
+app.get('/view/:id', auth.isUserLoggedIn, async(req,res)=>{
+    const response  = await fetch(`http://www.omdbapi.com/?i=${req.params.id}&apikey=${process.env.API_KEY}`);
+    const movie = await response.json();
+    console.log(movie);
+    if(movie.Response === 'False'){
+        res.redirect('/userhome');
+        // console.log(movie);
+    }
+    else{
+        res.render("movie",{movie:movie});
+    }
+});
 
 app.get('/search/:id', auth.isUserLoggedIn, async(req,res)=>{
     var movieID = req.params.id;

@@ -129,7 +129,7 @@ footer small a {
             <% var imdb_url = 'https://www.imdb.com/title/' + movie['imdbID'] %>
         <div class="column">
             <div class="card" style="font-size: large; margin-bottom: 20px;margin-left: 20px;margin-top: 20px;background-color: black;">
-            <img class="card-img-top" style="width:300px;height:475px;"src="<%- movie.Poster %>" alt="Card image cap">
+                <a href="/view/<%- movie.imdbID %>"><img class="card-img-top" style="width:300px;height:475px;"src="<%- movie.Poster %>" alt="<%- movie.Title %>"></a>
                     <div class="card-body">
                         <!-- <h5 class="card-title" style="font-size: large;"><%- movie.Title %></h5> -->
                         <!-- <p class="card-text"><%- movie.Year %></p> -->
