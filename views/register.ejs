@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+        
+    </style>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- aos -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav  mr-auto">
+                    <a class="nav-link dark-gray" href="/">IMDB</a>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <%- include('./layouts/messages') %>
+    <div class="container mt-3 text-dark" style="font-size:large;">
+    <div class="row">
+        <div class="col-md-1 col-lg-2 col-xl-3"></div>
+        <div class="col-md-10 col-lg-8 col-xl-6">
+            <form action="/register" method="POST">
+                <div class="heading-2 text-center mt-3">REGISTER</div>
+                <div class="form-group">
+                    <label class="required" for="name">Name</label>
+                    <input type="text" class="form-control" style="height: 40px;" id="name" placeholder="Enter name" name="name"
+                        value="<%= typeof name != 'undefined' ? name : '' %>">
+                </div>
+                <div class="form-group">
+                    <label class="required" for="email">Email</label>
+                    <input type="text" class="form-control" style="height: 40px; "id="email" placeholder="Enter email" name="email"
+                        value="<%= typeof email != 'undefined' ? email : '' %>">
+                </div>
+                <div class="form-group">
+                    <label class="required" for="password">Password (min. 8 characters)</label>
+                    <input type="password" class="form-control mb-1" style="height: 40px;"id="password1" placeholder="Enter password"
+                        name="password1">
+                    <label class="required" for="password">Confirm Password</label>
+                    <input type="password" class="form-control" style="height: 40px;"id="password2" placeholder="Confirm password"
+                        name="password2">
+                </div>
+                <div class="mb-3"> By registering, you agree to our <a href="/terms_of_use">Terms of Use</a> and <a href="/privacy_policy">Privacy Policy</a>.</div>
+                <a href="/login" style="height: 30px; width:70px"class="btn btn-outline-danger mr-2 pl-4 pr-4 ">Login</a>
+                <button type="submit" style="height: 30px; width:70px"class="btn btn-outline-dark pl-4 pr-4">Register</button>
+            </form>
+        </div>
+        <div class="col-md-1 col-lg-2 col-xl-3"></div>
+    </div>
+</div>
+</body>

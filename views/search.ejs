@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 625px;
+}
+        footer {
+  background: var(--black);
+  background-color: black;
+  color: var(--white);
+}
+
+footer small, footer a {
+  opacity: .9;
+}
+
+footer small a {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}
+    </style>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- aos -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+    <title>IMDB</title>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav  mr-auto">
+                    <a class="nav-link dark-gray" href="/userhome">IMDB</a>
+                </ul>
+                <ul class="navbar-nav mr-auto" style="font-size: large;">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                            <input type="search" style="width: 400px; height: 40px;" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" name="search" />
+                            <button type="submit" style="width: 60px; height: 40px;" class="btn btn-outline-primary">search</button>
+                        </div>
+                    </form>
+                </ul>
+                <ul class="navbar-nav  mr-4">
+                    <a class="nav-link dark-gray" href="/favourites">Favourites</a>
+                </ul>
+                <ul class="navbar-nav  mr-4">
+                    <a class="nav-link dark-gray" href="/logout">Logout</a>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <%- include('./layouts/messages') %>
+    <center><h2>SEARCH RESULTS</h2></center>
+    <br>
+    <!-- <div class="container-fluid content-row" style="font-size: large;">
+    <div class="row">
+        <% movies.Search.forEach(movie=>{ %>
+        <% var imdb_url = 'https://www.imdb.com/title/' + movie['imdbID'] %>
+        <div class="col-md-3 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="<%- movie.Poster %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%- movie.Title %></h5>
+                    <p class="card-text"><%- movie.Year %></p>
+                    <a href="/search/<%- movie.imdbID %>" class="btn btn-primary">More Details</a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    </div> -->
+<div class="row mb-4" style="font-size: large;">
+    <% movies.Search.forEach(movie=>{ %>
+        <% var imdb_url = 'https://www.imdb.com/title/' + movie['imdbID'] %>
+    <div class="column">
+        <div class="card" style="font-size: large; margin-bottom: 20px;">
+        <img class="card-img-top" style="width:325px;height:450px;"src="<%- movie.Poster %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: large;"><%- movie.Title %></h5>
+                    <p class="card-text"><%- movie.Year %></p>
+                    <a href="/search/<%- movie.imdbID %>" style="width: 150px; height: 40px;font-size: large;"class="btn btn-primary" >More Details</a>
+                </div>
+        </div>
+  </div>
+  <% }) %>
+</div>
+    <br>
+    <footer class="flex flex-col justify-center items-center text-center lg:flex-row lg:justify-between mx-auto p-4 h-24 lg:h-16">
+        <big class="text-sm pb-4 lg:ml-16">&copy; 2021</big>
+        <div class="lg:p-0 lg:mr-16"></div>
+      </footer>
+</body>
+</html>
