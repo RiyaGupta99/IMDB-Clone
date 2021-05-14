@@ -225,6 +225,31 @@ app.post('/removeComment/:id/:cid', auth.isUserLoggedIn, (req,res)=>{
         })
 });
 
+app.post('/addReview/:id', auth.isUserLoggedIn, (req,res)=>{
+    const review = req.body.review;
+    if(review && review>10){
+         res.redirect("back");
+     }
+    User.findById(req.user._id)
+        .then(user=>{
+            user.favourites.forEach(favourite=>{
+                if(favourite.imdbID === req.params.id){
+                    favourite.reviews=review;
+                    user.save()
+                        .then(data => {
+                            console.log("successfully added to reviews!");
+                            req.flash("success_msgs","successfully added to review!");
+                            res.redirect("back");
+                        })
+                }
+            })
+        })
+        .catch(err=>{
+            console.log(err);
+            res.redirect("back");
+        })
+});
+
 
 app.get("/login", (req, res) => {
     if (req.isAuthenticated() && req.user.type === "USER")
@@ -234,7 +259,6 @@ app.get("/login", (req, res) => {
 });
 
 app.post('/login', (req, res, next) => {
-    console.log("yaha");
     passport.authenticate('user-local', {
         successRedirect: '/userhome',
         failureRedirect: '/login',
@@ -248,7 +272,7 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password1, password2 } = req.body;
     let errors = [];
     if (!name || !email || !password1 || !password2) {

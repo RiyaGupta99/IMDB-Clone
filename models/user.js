@@ -13,7 +13,12 @@
             {
                 type:String,
             }
-            ]
+            ],
+            reviews:
+                {
+                    type:Number,
+                }
+            
         }
      ],
     

@@ -24,7 +24,7 @@
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
-  height: 900px;
+  height: 1100px;
 }
 
     </style>
@@ -93,13 +93,27 @@
                         <%}%> 
                         <% }) %>
                         <form action="/addComment/<%- movie.imdbID %>" method="POST">
-                            <div class="form-group" style="font-size: large;">
-                                <label for="comments">Comments</label>
-                                <input type="text" style="width: 400px; height: 100px;" class="form-control" id="text"
+                            <label for="comments">Comments</label>
+                            <div class="form-group" style="font-size: large;large;display: flex;justify-content: space-between;">
+                                
+                                <input type="text" style="width: 220px; height: 100px;" class="form-control" id="text"
                                     placeholder="Enter comments" name="comment">
+                                    <button type="submit" style="width: 170px; height: 40px; font-size: large; margin-top: 30px;"
+                                    class="btn btn-outline-dark pl-4 pr-4">Add Comment</button>
+                            </div>    
+                        </form>
+                        <br>
+                        
+                        <form action="/addReview/<%- movie.imdbID %>" method="POST">
+                            <label for="reviews">Reviews</label>
+                            <div class="form-group" style="font-size: large;display: flex;justify-content: space-between;">
+                                
+                                <input type="number" style="width: 220px; height: 100px;" class="form-control" id="text"
+                                    placeholder="Enter review" name="review">
+                            
+                            <button type="submit" style="width: 170px; height: 40px; font-size: large; margin-top: 30px;"
+                                class="btn btn-outline-dark pl-4 pr-4">Add Review</button>
                             </div>
-                            <button type="submit" style="width: 170px; height: 40px; font-size: large;"
-                                class="btn btn-outline-dark pl-4 pr-4">Add Comment</button>
                         </form>
                         <br>
                         <form action="/removeFavourite/<%- movie.imdbID %>" method="POST">
